@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <title>Overlay</title>
+        <link href="reset.css" rel="stylesheet" type="text/css">
+        <link href="overlay.css" rel="stylesheet" type="text/css">
+		<script src="jquery.js"></script>
+		<script src="overlay.js"></script>
+    </head>
+    <body>
+        <div id="pageContent" class="pageContent" style="min-width:960px;margin:0 auto;width:92%;position:relative;">
+            <div class="pageWidth">
+	                 <div style="margin-top:10px">
+						<h3 style="padding-bottom:0px">Overlays</h3>
+                    	<a href="javascript:;" id="openOverlay">Open Overlay 1</a>
+						<b style="margin:0px 30px;color:#999">|</b>
+						<a href="javascript:;" id="openOverlay1Anothercontent">Open Overlay 1 with another content</a>
+						<div class="mask"></div>
+                        <div class="ol" id="oly1">
+                    		<div class="ol-bg"></div>
+							<div class="ol-wr">
+								<div class="ol-h"><span></span><a href="javascript:;" class="olCls">X</a></div>
+								<div class="ol-c">
+									
+								</div>
+							</div>
+                    	</div>
+            	</div>
+			</div>
+        </div>
+		<div class="ol" id="oly2">
+	        <div class="ol-bg">
+	        </div>
+	        <div class="ol-wr">
+	            <div class="ol-h">
+	                <span>Plan a fun outing, birthday party, play date, or field trip.</span>
+					<a href="javascript:;" class="olCls">X</a>
+	            </div>
+	            <div class="ol-c">
+	            </div>
+	        </div>
+	    </div>
+		
+        <div id="contentEl" style="display:none;">
+            <div style="height:1000px">Content for overlay 1 comes here.
+			<div style="padding-top: 10px;"><a href="javascript:;" id="openAnother">Open overlay 2</a></div>
+			<div style="padding-top: 10px;"><a href="javascript:;" id="closeOvl2">Close overlay 2</a></div>
+			<div style="padding-top: 10px;"><a href="javascript:;" id="closeOvl1">Close overlay 1</a></div>
+			<div style="padding-top: 20px;font-size: 15px;">This layer will be closed when you click outside the layer or pressing Esc key</div>
+			</div>
+        </div>
+		<div id="contentEl2" style="display:none;">
+            <div>Another set of content for overlay 1 comes here.</div>
+        </div>
+        <div id="anotherContentEl" style="display:none;">
+            Content for 2nd overlay
+			<div style="padding-top: 20px;font-size: 15px;">This layer will be closed when you close the layer 1, either by clicking outside the layer or pressing esc key.</div>
+			
+        </div>
+		<script>
+			$(document).ready(function(){
+                $("#openOverlay").click(function(){
+					$("#oly1").overlay({
+	                    contentEl: "#contentEl",
+						head : {m: "This is header for overlay 1."},
+						animClose : false,
+						width : 600,
+						triggerEl : $("#openOverlay"),
+						closeEl : $("#closeOvl1, #oly1 .olCls")
+	                });
+				});
+				$("#oly1").bind("afterclose", function(ev,data){
+					$("#oly2").trigger("doClose");
+				});
+				$("#closeOvl2").click(function(e){
+					$("#oly2").trigger("doClose");
+				});
+				$("#openAnother").click(function(){
+					$("#oly2").overlay({
+	                    contentEl: "#anotherContentEl",
+						head : {m: "This is header for overlay 2."},
+						animClose : false,
+						width : 400,
+						hasMask : false,
+						closeEl : $("#oly2 .olCls")
+	                });
+				});
+				$("#openOverlay1Anothercontent").click(function(e){
+					$("#oly1").overlay({
+	                    contentEl: "#contentEl2",
+						head : {m: "This is header for overlay 1 which contains another set of content."},
+						closeEl : $("#oly1 .olCls")
+	                });
+				});
+			});
+		</script>
+    </body>
+</html>

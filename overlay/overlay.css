@@ -1,0 +1,9 @@
+.ol{position:absolute;z-index:100;padding: 10px;display:none}
+.ol-bg {position: absolute; top: 0pt; left: 0pt; height: 100%; width: 100%; background-color: #000; opacity: 0.3;filter:alpha(opacity=30);
+		-moz-border-radius: 10px;border-radius: 10px;-webkit-border-radius: 10px;}
+.ol-wr{background-color: #fff; position: relative;z-index:101;-moz-border-radius: 5px;border-radius: 5px;-webkit-border-radius: 5px;}
+.ol-h { height: 58px;padding: 15px;border-bottom:1px solid #ccc;font-size:200%;color:#0D9EBE}
+.ol-c {padding:15px;overflow-y:auto}
+.btns {text-align: right;padding-top: 20px;}
+.mask{display:none;position:fixed;height:100%;width:100%;background-color:#fff;top:0px;left:0px;opacity: 0.5;filter:alpha(opacity=50);}
+.olCls {position: absolute;right: 20px;top: 15px;}
